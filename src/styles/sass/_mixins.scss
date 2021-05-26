@@ -1,0 +1,33 @@
+@import "./variables";
+
+@mixin format-document {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    outline: none;
+}
+
+@mixin titulo--style{
+    font-family: $font-family-2;
+    color: $primary-color;
+    font-weight: $bold;
+}
+
+@mixin column--disposition{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@mixin parrafo--style{
+    font-family: $font-family-2;
+    font-weight: $medium;
+    font-size: $font-size-3;
+    color: $primary-color;
+    text-align: center;
+    line-height: 19px;
+}
+
+

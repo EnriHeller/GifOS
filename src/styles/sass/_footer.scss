@@ -1,0 +1,21 @@
+@import "./variables";
+@import "./mixins";
+
+.footer{
+    @include column--disposition;
+}
+
+.parrafo__footer {
+    margin: 47px 0 24px 0;
+    font-family: $font-family-1;
+    font-size: $font-size-5;
+}
+
+.icons-container__footer{
+    display: flex;
+    justify-content: center;
+}
+
+.icon__footer{
+    margin-left: 20px;
+}
