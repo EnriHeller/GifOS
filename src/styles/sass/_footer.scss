@@ -19,3 +19,18 @@
 .icon__footer{
     margin-left: 20px;
 }
+
+@media screen and (min-width: 1220px) {
+    .footer{
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 8vw ;
+        align-items: center;
+    }
+    
+    .icons-container__footer{
+        margin: 22px 60% 0 10px;
+    }
+    
+    
+}

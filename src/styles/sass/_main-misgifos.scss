@@ -1,8 +1,0 @@
-@import "./variables";
-@import "./mixins";
-
-.principal-misgifos__main{
-    @include principal--grid-setup;
-    grid-template-rows: repeat(4, 1fr);
-    height: 450px;
-}

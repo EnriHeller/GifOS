@@ -30,12 +30,6 @@
     line-height: 19px;
 }
 
-@mixin principal--grid-setup{
-    margin-top: 25px;
-    padding: 21px;
-    display: grid;
-    grid-gap: 21px;
-    grid-template-columns: repeat(2, 1fr);
-}
+
 
 
