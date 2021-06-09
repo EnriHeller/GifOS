@@ -255,6 +255,10 @@
     width: 59.1px;
     height: 59.1px;
   }
+  .titulo__logo {
+    top: 28px;
+    left: 18px;
+  }
 }
 
 .main, .principal {
