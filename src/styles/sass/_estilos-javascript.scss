@@ -1,0 +1,71 @@
+@import "./variables";
+@import "./mixins";
+
+.night--style{
+    background-color: $night-background;
+    color: $terciary-color;
+}
+
+.night--style2{
+    background-color: $night-background2;
+}
+
+.night--style3{
+    background-color: $night-background3;
+}
+
+.nightBorders{
+    border: 1px solid $terciary-color;
+}
+
+.search-container__header{
+    display: flex;
+}
+
+.fixLogo{
+    margin-left: 86px;
+}
+
+.hidden{
+    display: none;
+}
+
+.noResultsMessage{
+    color: $secondary-color;
+    font-family: $font-family-2;
+    font-weight: $bold;
+}
+
+.noResultsDistribution{
+    display: flex;
+    @include column--disposition;
+}
+
+.sugerencia{
+    cursor: pointer;
+    color: $active-link;
+    font-size: 16px;
+    font-family: $font-family-1;
+    font-weight: $regular;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin: 8px 0;
+}
+
+.iconSearchSugerencia{
+    width: 25px;
+    margin: 6px;
+}
+
+.iconSearchInput{
+    width: 35px;
+    margin-left: 30px;
+}
+
+#inputSearchIconContainer, #inputSearchIconContainer2{
+    display: flex;
+    align-items: center;
+}

@@ -9,49 +9,54 @@
         <link rel="stylesheet" href="./src/styles/style.css">
         <title>GIFOS - Favoritos</title>
     </head>
-<body>
-    <div class="line-decoration-1" ></div>
+<body class="body" id="body">
 
-    <header class="header">
-        <a href="./index.html" class="logo__cabecera">
-            <div class="container-padre__logo">
-                <div class="container-hijo__logo">
-                </div>
-            </div>
-            <h3 class="titulo__logo">GIFOS</h3>
+    <header class="header" id="header">
+        <a href="./index.html" class="logo__cabecera" id="logoContainer">
+            <img src="./src/img/icons/header/logo-mobile.svg" alt="GIFOS" class="imagen-mobile__logo" id="logoMobile">
+            <img src="./src/img/icons/header/logo-desktop.svg" class="imagen-desktop__logo" id="logoDesktop" alt="GIFOS">
         </a>
 
+        <div class="hide-search" id="hideSearch">
+            <input class="search__principal" type="search" name="busqueda" id="busqueda2" placeholder="Busca GIFOS y más">
+    
+            <label for="busqueda" class="search-icon__principal">
+                <img src="./src/img/icons/home-main/icon-search.svg" alt="Buscar" id="searchIcon2">
+            </label>
+        </div>
+
         <input type="checkbox" id="menu" class="check" name="check">
+        <label for="menu" class="boton__cabecera" id="labelMenu">
+            <img src="./src/img/icons/header/burger.svg" alt="menu" id="burgerMenu">
+        </label> <!-- boton menu -->
 
-        <label for="menu" class="boton__cabecera"></label> 
-
-        <nav class="menu-desplegable__cabecera">
+        <nav class="menu-desplegable__cabecera" id="menuDesplegable">
             
-            <a href="#" class="opcion-menu__cabecera">
+            <a href="#" class="opcion-menu__cabecera" id="nightModeButton">
                 Modo Nocturno 
-                <div class="line-decoration-2"></div>       
-            
+            </a>    
+            <div class="line-decoration-2"></div> 
+
             <a href="./favoritos.html" class="opcion-menu__cabecera">
                 Favoritos
-                <div class="line-decoration-2"></div> 
             </a>
+            <div class="line-decoration-2"></div>       
             
             <a href="./misgifos.html" class="opcion-menu__cabecera">
                 Mis GIFOS
-                <div class="line-decoration-2"></div> 
             </a>
+            <div class="line-decoration-2"></div> 
 
-            <a href="#" class="opcion-menu__cabecera newgif">
-                <img class="newgif" src="./src/img/icons/header/button-crear-gifo.svg" alt="">
+            <a href="./crear-gifo.html" class="opcion-menu__cabecera newgif">
+                <img class="newgif" id="newGifButton" src="./src/img/icons/header/button-crear-gifo.svg" alt="Crear GIFOS">
             </a>
             
         </nav>
-
     </header>
 
     <main class="main">
 
-        <img src="./src/img/icons/favoritos-main/icon-favoritos.svg" alt="Favoritos icon">
+        <img src="./src/img/icons/favoritos-main/icon-favoritos.svg" alt="Favoritos icon" class="category-icon">
         <h2 class="titulo-bis__main">Favoritos</h2>
 
         <article class="grilla-gif__main dstr-fav">
@@ -82,32 +87,94 @@
         </article>
 
         <button class="ver-mas__main">
-            VER MÁS
+            <img src="./src/img/icons/favoritos-main/ver-mas.svg" alt="Ver Más" id="verMas">
         </button>
 
-        <section class="trending">
+        <section class="trending" id="trending">
             <h3 class="subtitulo__trending">Trending GIFOS</h3>
+
             <p class="parrafo__trending">Mira los últimos GIFOS de nuestra comunidad.</p>
 
-            <ul class="slider-container__trending">
-                <li class="boton__trending">
-                    <img src="./src/img/icons/home-main/button-slider-left.svg" alt="" class="previous">
-                </li>
-                <li class="slider-content__trending">
-                    <img src="https://picsum.photos/243/186" alt="" class="slider-img__trending">
-                </li>
-                <li class="slider-content__trending">
-                    <img src="https://picsum.photos/243/187" alt="" class="slider-img__trending">
-                </li>
-                <li class="slider-content__trending">
-                    <img src="https://picsum.photos/243/188" alt="" class="slider-img__trending">
-                </li>
-                <li class="boton__trending">
-                    <img src="./src/img/icons/home-main/button-slider-right.svg" alt="next">
-                </li>
-            </ul>
+            <div class="carrousel">
+                <div class="boton__trending">
+                    <img id="trendingButtonLeft" src="./src/img/icons/home-main/button-slider-left.svg" alt="Previous" class="previous">
+                </div>
+                
+                <div class="slider-container__trending" id="sliderContainer">
 
-            
+                    <div class="slider-content__trending">
+                        <img src="https://picsum.photos/243/186" alt="" class="slider-img__trending">
+                        <div class="hoverWindow">
+                            <div class="hoverIcons">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-fav.svg" alt="fav" class="favIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-download.svg" alt="download" class="downloadIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-trash-normal.svg" alt="remove" class="expandIcon">
+                            </div>
+
+                            <div class="gifInfo">
+                                <p>User</p>
+                                <p class="gifTittle">Título GIFO</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-content__trending">
+                        <img src="https://picsum.photos/243/187" alt="" class="slider-img__trending">
+                        <div class="hoverWindow">
+                            <div class="hoverIcons">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-fav.svg" alt="fav" class="favIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-download.svg" alt="download" class="downloadIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-trash-normal.svg" alt="remove" class="expandIcon">
+                            </div>
+
+                            <div class="gifInfo">
+                                <p>User</p>
+                                <p class="gifTittle">Título GIFO</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="slider-content__trending">
+                        <img src="https://picsum.photos/243/180" alt="" class="slider-img__trending">
+                        <div class="hoverWindow">
+                            <div class="hoverIcons">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-fav.svg" alt="fav" class="favIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-download.svg" alt="download" class="downloadIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-trash-normal.svg" alt="remove" class="expandIcon">
+                            </div>
+
+                            <div class="gifInfo">
+                                <p>User</p>
+                                <p class="gifTittle">Título GIFO</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="slider-content__trending">
+                        <img src="https://picsum.photos/243/180" alt="" class="slider-img__trending">
+                        <div class="hoverWindow">
+                            <div class="hoverIcons">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-fav.svg" alt="fav" class="favIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-download.svg" alt="download" class="downloadIcon">
+                                <img src="./src/img/icons/home-main/hoverIcons/icon-trash-normal.svg" alt="remove" class="expandIcon">
+                            </div>
+
+                            <div class="gifInfo">
+                                <p>User</p>
+                                <p class="gifTittle">Título GIFO</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
+                <div class="boton__trending">
+                    <img id="trendingButtonRight" src="./src/img/icons/home-main/button-slider-right.svg" alt="Next">
+                </div>
+            </div>
         </section>
 
     </main>
@@ -116,14 +183,14 @@
         <p class="parrafo__footer">Compartir en:</p>
 
         <div class="icons-container__footer">
-            <a href="icon__footer">
-                <img src="./src/img/icons/footer/icon_facebook.svg" alt="Facebook">
+            <a href="icon__footer" >
+                <img src="./src/img/icons/footer/icon_facebook.svg" alt="Facebook" id="facebook">
             </a>
-            <a href="" class="icon__footer">
-                <img src="./src/img/icons/footer/icon-twitter.svg" alt="Twitter">
+            <a href="" class="icon__footer" >
+                <img src="./src/img/icons/footer/icon-twitter.svg" alt="Twitter" id="twitter">
             </a>
-            <a href="" class="icon__footer">
-                <img src="./src/img/icons/footer/icon_instagram.svg" alt="Instagram">
+            <a href="" class="icon__footer" >
+                <img src="./src/img/icons/footer/icon_instagram.svg" alt="Instagram" id="instagram">
             </a>
         </div>
 
@@ -131,5 +198,11 @@
     </footer>
 
     <div class="line-decoration-1" ></div>
+
+    <script src="./src/js/functions.js"></script>
+    <script src = "./src/js/header.js"></script>
+    <script src = "./src/js/alternativeMain.js"></script>
+    <script src = "./src/js/trending.js"></script>
+    <script src = "./src/js/footer.js"></script>
 </body>
 </html>

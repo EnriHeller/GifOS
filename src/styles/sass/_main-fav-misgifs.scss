@@ -1,6 +1,9 @@
 @import "./variables";
 @import "./mixins";
 
+.category-icon{
+    margin-top: 150px;
+}
 .titulo-bis__main{
     @include titulo--style;
     font-size: $font-size-4 ;
@@ -9,12 +12,10 @@
 }
 
 .grilla-gif__main{
-    margin-top: 25px;
     padding: 21px;
     display: grid;
     grid-gap: 21px;
     grid-template-columns: repeat(2, 1fr);
-    width: 90%;
 }
 
 .dstr-fav{
@@ -27,7 +28,8 @@
 
 .content__grilla-gif{
     display: block;
-    width: 100%;
+    width: 20vw;
+    align-items: center;
 }
 
 .ver-mas__main{
@@ -35,18 +37,13 @@
     width: 127px;
     height: 50px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: transparent;
-    border: 1px solid $primary-color;
-    border-radius: 50px;
-    @include titulo--style;
-    font-size: $font-size-6;
+    border: none;
+    cursor: pointer;
 }
 
-@media screen and (min-width: 750px) {
 
-    
+@media screen and (min-width: 750px) {
     .grilla-gif__main{
         grid-template-columns: repeat(4,1fr);
     }
