@@ -34,7 +34,7 @@
   background-color: #FFFF;
   position: fixed;
   top: -10px;
-  z-index: 10000;
+  z-index: 100000;
 }
 
 .logo__cabecera {
@@ -425,7 +425,7 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 1100px) {
   .grilla-gif__main {
     -ms-grid-columns: (1fr)[4];
         grid-template-columns: repeat(4, 1fr);
@@ -443,6 +443,93 @@
 @media screen and (min-width: 1220px) {
   .titulo-bis__main {
     font-size: 25px;
+  }
+}
+
+.open-window {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(255, 255, 255, 0.904);
+  position: fixed;
+  z-index: 10000;
+  padding: 16px;
+}
+
+.close__open-window {
+  margin-left: 90vw;
+  margin-right: 10vw;
+  margin-bottom: 6%;
+}
+
+.gif-image__open-window {
+  width: 318px;
+  height: 245px;
+  margin: auto;
+}
+
+.open-window-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 30px;
+}
+
+.gifs-container__open-window {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.openWindowIcons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  row-gap: 10px;
+  width: 80px;
+}
+
+.openWindowNightStyle {
+  background-color: #222326ce;
+}
+
+.openWindowInfo {
+  width: 200px;
+  font-family: "Roboto", sans-serif;
+}
+
+.favIcon {
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (min-width: 1220px) {
+  .close__open-window {
+    width: 18px;
+    margin-top: 15vw;
+  }
+  .openWindowInfo {
+    margin-bottom: 50%;
+  }
+  .gif-image__open-window {
+    width: 500px;
+    height: 345px;
   }
 }
 
@@ -510,6 +597,13 @@
           align-items: center;
   overflow-x: initial;
   position: relative;
+  width: 243px;
+  height: 186px;
+}
+
+.gif-image {
+  height: 100%;
+  width: 243px;
 }
 
 .slider-container__trending::-webkit-scrollbar {
@@ -591,27 +685,6 @@
   .slider-container__trending {
     width: 786px;
     overflow-x: scroll;
-    display: ruby;
-    -webkit-display: ruby;
-  }
-  .gif-content {
-    margin: 0 9.5px;
-    width: 243px;
-    height: 186px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    overflow-x: initial;
-    position: relative;
-  }
-  .gif-image {
-    width: 100%;
-    height: 100%;
   }
 }
 

@@ -36,40 +36,6 @@ trendingButtonRight.onclick = function(){
 
 //HOVERS
 
-for(icon of favIcons){
-    hover(icon,
-        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-        "/src/img/icons/home-main/hoverIcons/icon-fav.svg");
-
-    Nighthover(icon,
-            "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-            "/src/img/icons/home-main/hoverIcons/icon-fav.svg");
-
-    activeClass(icon, 
-        "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg", 
-        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-        "/src/img/icons/home-main/hoverIcons/icon-fav.svg",
-        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg");
-}
-
-for(icon of downloadIcons){
-    hover(icon, 
-        "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
-        "/src/img/icons/home-main/hoverIcons/icon-download.svg");
-    Nighthover(icon, 
-        "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
-        "/src/img/icons/home-main/hoverIcons/icon-download.svg");
-}
-
-for(icon of expandIcons){
-    hover(icon, "/src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
-    "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
-
-    Nighthover(icon,
-        "/src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
-        "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
-}
-
 hover(trendingButtonLeft,"/src/img/icons/home-main/button-slider-left-hover.svg","/src/img/icons/home-main/button-slider-left.svg");
 
 Nighthover(trendingButtonLeft,
@@ -84,3 +50,11 @@ Nighthover(trendingButtonRight,
         "/src/img/icons/home-main/button-slider-right-hover.svg",
         "/src/img/icons/home-main/button-slider-right-md-noct.svg");
 
+const trendingGifs = async(gifsContainer) =>{
+    const trendingEndpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}`;
+    const responseHttp = await fetch(trendingEndpoint);
+    const responseJson = await responseHttp.json();
+    const arrayTrendings = responseJson.data;
+    printGifs(arrayTrendings, gifsContainer);
+} 
+trendingGifs(sliderContainer);

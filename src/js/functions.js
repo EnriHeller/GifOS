@@ -6,16 +6,14 @@ let nightClass = function(element){
 let nightClass2 = function(element){
     element.classList.toggle("night--style2");
 }
-
 let nightClass3 = function(element){
     element.classList.toggle("night--style3");
 }
-
 let nightBorders = function(element){
     element.classList.toggle("nightBorders");
 }
 
-//cambiar botones del menu desplegable, dependiendo si esta en nocturno o diurno:
+//Cambiar botones del menu desplegable, dependiendo si esta en nocturno o diurno:
 
 let cambiarMenu = function(){
     if(body.className.includes("night--style")){
@@ -33,7 +31,6 @@ let cambiarMenu = function(){
     }
 }
 
-
 //Funcion cambiar imagen al hacerles hover, modo diurno:
 
 function hover(elemento,imagenOver,imagenOut){
@@ -48,6 +45,7 @@ function hover(elemento,imagenOver,imagenOut){
         }
     });
 }
+
 
 //Funcion cambiar imagen de iconos al hacerles hover, modo nocturno:
 
@@ -67,17 +65,22 @@ function Nighthover(elemento,imagenOver,imagenOut){
 //Funcion para añadir o sacar la clase active a un elemento:
 
 function activeClass(element, activeImage, inactiveImage, hoverImage){
+    if(element.className.includes("active")){
+        element.src = activeImage;
+        hover(element,activeImage,activeImage);
+        Nighthover(element,activeImage,activeImage) ;
+    }
     element.addEventListener("click", ()=>{
         element.classList.toggle("active");
-
-        if(element.className.includes("active")){
-            element.src = activeImage;
-            hover(element,activeImage,activeImage);
-            Nighthover(element,activeImage,activeImage);
-        }else{
+        console.log(element.className);
+        if(!element.className.includes("active")){
             element.src = inactiveImage;
             hover(element,inactiveImage,hoverImage);
             Nighthover(element,inactiveImage,hoverImage);
+        }else{
+            element.src = activeImage;
+            hover(element,activeImage,activeImage);
+            Nighthover(element,activeImage,activeImage);
         }
     });
 }
@@ -100,45 +103,29 @@ function nightBordersForArray(array){
 
 const apikey = "G9CuhKrAX6tHRAawnwsHTER482T7FSZK";
 
-// Funcion asincronica para buscar gifs a partir de una palabra, obtenerlos en forma de objetos y luego hacer algo con ellos mediante el callback.
-
-const buscarGifs = async (q, gifsContainer, offset) => {
-    const searchEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${q}&limit=12&offset=${offset}`;
-    const responseHttp = await fetch(searchEndpoint);
-    const responseJson = await responseHttp.json();
-    let gifObjects = responseJson.data;
-    let verMas = document.getElementById('verMas');
-    try {
-        if(gifObjects.lenght !== 0){
-            gifsContainer.classList.remove("noResultsDistribution");
-            verMas.classList.remove('hidden');
-            printGifs(gifObjects, gifsContainer);
-    }
-        else{
-            throw new Error();
-        }
-    } catch (error) {
-        console.log("Falló la promesa buscarGifs");
-        let noResultsImage= document.createElement("img");
-        noResultsImage.src = "/src/img/home/icon-busqueda-sin-resultado.svg";
-        let noResultsMessage = document.createElement("h3");
-        noResultsMessage.textContent = "Intenta con otra búsqueda.";
-        noResultsMessage.classList.add("noResultsMessage");
-        gifsContainer.classList.add('noResultsDistribution');
-        verMas.classList.add('hidden');
-        gifsContainer.appendChild(noResultsImage);
-        gifsContainer.appendChild(noResultsMessage);
-    }  
-}
-
 //Crear los contenedores con los gifs, el titulo, usuario, hoverWindow, etc.
 
+let favArray = [];
+let favArrayLS = localStorage.getItem("favArray")
+if(favArrayLS !== null){
+    favArray = JSON.parse(favArrayLS)
+}
+
+let openWindow = document.getElementById("openWindow");
+let closeOpenWindow = document.getElementById("closeOpenWindow");
+
+let gifsContainerOpenWindow = document.getElementById("gifsContainerOpenWindow");
+
+closeOpenWindow.addEventListener("click",()=>{
+    openWindow.classList.add("hidden");
+});
+
+
 function printGifs(gifArrayObjetos, gifsContainer){
-    
-    try {
-        if(gifArrayObjetos.lenght !== 0){
-            for(let i = 0; i < 12; i++){
-                let gifObject = gifArrayObjetos[i];
+    if(gifArrayObjetos.lenght !== 0){
+        for(let i = 0; i < 12; i++){
+            let gifObject = gifArrayObjetos[i];
+            if(gifObject !== undefined){
                 let receivedImage = gifObject.images.fixed_width.url;
                 let receivedUser = gifObject.username;
                 let receivedTitle = gifObject.title;
@@ -157,6 +144,11 @@ function printGifs(gifArrayObjetos, gifsContainer){
                 gifsContainer.appendChild(gifContent);
                 gifContent.appendChild(gifImage);
                 gifContent.appendChild(hoverWindow);
+                
+                gifImage.src = receivedImage;
+                user.textContent = receivedUser;
+                gifTitle.textContent = receivedTitle;
+                
                 hoverWindow.appendChild(hoverIcons);
                 hoverWindow.appendChild(gifInfo);
                 hoverIcons.appendChild(favIcon);
@@ -173,231 +165,166 @@ function printGifs(gifArrayObjetos, gifsContainer){
                 gifImage.classList.add("gif-image");
                 hoverWindow.classList.add("hoverWindow");
                 hoverIcons.classList.add("hoverIcons");
-                gifInfo.classList.add("gifInfo");
+                gifInfo.classList.add("gifInfo");                                                     
                 gifTitle.classList.add("gifTitle");
                 favIcon.classList.add("favIcon");
                 downloadIcon.classList.add("downloadIcon");
                 expandIcon.classList.add("expandIcon");
+    
+                //Configuracion para cada hover button
+
+                const favIconSettings = function(icon){
+
+                    hover(icon,"/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
+                    "/src/img/icons/home-main/hoverIcons/icon-fav.svg", "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
+
+                    Nighthover(icon,
+                        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-fav.svg", "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg"); 
+
+                    activeClass(icon, 
+                        "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg", 
+                        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-fav.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg");
+
+                    icon.addEventListener("click", ()=>{
+                        localStorage.setItem("favIconClassName",icon.className)
+                    })
+                }
+
+                const downloadSettings = function(icon){
+                    hover(icon, 
+                        "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-download.svg");
+
+                    Nighthover(icon, 
+                        "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-download.svg");
+                }
+
+                const expandSettings = function(icon){
+                    hover(icon,
+                        "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
+                    
+                    Nighthover(icon,
+                        "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
+                }
+                //Acciones para cada hover button
+
+                const addFavGif = function(icon){
+                    if(icon.className.includes("active")){
+                        favArray.push(gifObject);
+                    }else{
+                        favArray.push(favArray.splice(favArray.indexOf(gifObject),1)[0]);
+                        favArray.pop();
+                    }
                 
-                hover(favIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-                "/src/img/icons/home-main/hoverIcons/icon-fav.svg" );
+                    localStorage.setItem("favArray", JSON.stringify(favArray));
+                    
+                    let favArrayInLocalStorage = localStorage.getItem("favArray");
     
-                Nighthover(favIcon,
-                    "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-fav.svg");
+                    let FavArraySaved = JSON.parse(favArrayInLocalStorage);
     
-                activeClass(favIcon, 
-                    "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg", 
-                    "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-fav.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg");
+                }
     
-                hover(downloadIcon, 
-                    "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-download.svg");
+                const downloadGif = function(){
+                    (async () => {
+                        let a = document.createElement('a');
+                        let response = await fetch(`${receivedImage}`);
+                        let file = await response.blob();
+                        a.download = 'GIFO';
+                        a.href = window.URL.createObjectURL(file);
+                        a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
+                        a.click();
+                    })();
+                }
     
-                Nighthover(downloadIcon, 
-                    "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-download.svg");
+                const createElementsOpenWindow = function(){
+                    gifsContainerOpenWindow.innerHTML = "";
+                    openWindow.classList.remove("hidden");
+                    if(body.className.includes("night--style")){
+                        openWindow.classList.add("openWindowNightStyle");
+                        closeOpenWindow.src = "/src/img/icons/header/close-modo-noct.svg";
+                    }else{
+                        openWindow.classList.remove("openWindowNightStyle");
+                        closeOpenWindow.src = "/src/img/icons/header/close.svg";
     
-                hover(expandIcon,
-                    "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
+                    }
                 
-                Nighthover(expandIcon,
-                    "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
+                    let gifImageOpenWindow = gifImage.cloneNode();
+                    let openWindowOptions = document.createElement("div");
+                        let openWindowInfo = document.createElement("div");
+                            let userOpenWindow = document.createElement("div");
+                            let gifTitleOpenWindow = document.createElement("div");
                 
-                gifImage.src = receivedImage;
-                user.textContent = receivedUser;
-                gifTitle.textContent = receivedTitle;
+                        let openWindowIcons = document.createElement("div");
+                            let openWindowFav = favIcon.cloneNode();
+                            let openWindowDownload = downloadIcon.cloneNode();
+                
+                    gifImageOpenWindow.classList.remove("gif-image");
+                    gifImageOpenWindow.classList.add("gif-image__open-window");
+                    openWindowOptions.classList.add("open-window-options");
+                    openWindowInfo.classList.add("openWindowInfo")
+                    gifTitleOpenWindow.classList.add("gifTitle");
+                    openWindowIcons.classList.add("openWindowIcons");
+                
+                    gifsContainerOpenWindow.appendChild(gifImageOpenWindow);
+                    gifsContainerOpenWindow.appendChild(openWindowOptions);
+                    openWindowOptions.appendChild(openWindowInfo);
+                    openWindowOptions.appendChild(openWindowIcons);
+                    openWindowInfo.appendChild(userOpenWindow);
+                    openWindowInfo.appendChild(gifTitleOpenWindow);
+                    openWindowIcons.appendChild(openWindowFav);
+                    openWindowIcons.appendChild(openWindowDownload);
+    
+                    userOpenWindow.textContent = receivedUser;
+                    gifTitleOpenWindow.textContent = receivedTitle; 
+    
+                    favIconSettings(openWindowFav);
+                    openWindowFav.addEventListener("click",()=>{
+                        addFavGif(openWindowFav);
+                    });
+    
+                    downloadSettings(openWindowDownload);
+                    openWindowDownload.addEventListener("click", ()=>{
+                        downloadGif();
+                    })
+                }
+    
+                let grillaFav = document.getElementById("grillaFav");
+
+                favIconSettings(favIcon);
+                favIcon.addEventListener("click", ()=>{
+                    addFavGif(favIcon);
+                    if(grillaFav && favArray.lenght !==0){
+                        grillaFav.innerHTML = "";
+                        printGifs(favArray,grillaFav);
+                        let activeFavIcons = document.querySelectorAll("#grillaFav .favIcon");
+                        for (let i = 0; i < activeFavIcons.length; i++) {
+                            const activeIcon = activeFavIcons[i];
+                            activeIcon.classList.add("active");
+                            activeIcon.src = "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg";
+                            hover(activeIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-active.svg","/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
+                            Nighthover(activeIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-active.svg","/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
+                        }
+                    }
+                });
+    
+                downloadSettings(downloadIcon);
+                downloadIcon.addEventListener("click",()=>{
+                    downloadGif();
+                })
+    
+                expandSettings(expandIcon);
+                expandIcon.addEventListener("click", createElementsOpenWindow);
+    
+                if(screen.width<1200){
+                    hoverWindow.addEventListener("click", createElementsOpenWindow);
             }
-        }else{
-            throw new Error()
-        }
-    } catch (error) {
-        console.log("Falló la promesa printGifs");
-        
-    }
-    
-} 
-
-//Busqueda por input, apretando en el icono de busqueda o PRESIONANDO ENTER teniendo en cuenta el input secundario para que contengan el mismo.
-let resultsContainer = document.getElementById("resultsContainer");
-let recomendations = document.getElementById("recomendations");
-
-function buscarEscribiendoEnElInput(input, gifsContainer, input2){
-    input.addEventListener("keypress",(e)=>{
-        if(e.key == "Enter"){
-            let keyword = input.value;
-            input2.value = input.value;
-            resultadosTitle.textContent = keyword;
-            gifsContainer.innerHTML = "";
-            if(resultsContainer.className.includes("hidden") && input.value !== ""){
-                resultsContainer.classList.remove("hidden");
-                recomendations.classList.add("hidden");
-            }else if(!resultsContainer.className.includes("hidden") && input.value !== ""){
-            }else{
-                resultsContainer.classList.add("hidden");
-                recomendations.classList.remove("hidden");
             }
-            buscarGifs(keyword, gifsContainer, 0);
         }
-    }); 
+    } 
 }
-
-//Cambiar icono de busqueda según si hay escrita o no una palabra y borrar contenido cuando se clickea
-
-let changeSearchIcon = function(input, searchIcon){
-    input.addEventListener("keyup", ()=>{
-        if(input.value !== "" && !body.className.includes("night--style")){
-            searchIcon.src = "/src/img/icons/header/close.svg";
-        }else if(input.value !== "" && body.className.includes("night--style")){
-            searchIcon.src = "/src/img/icons/header/close-modo-noct.svg";
-        }
-        
-        else if(input.value === "" && !body.className.includes("night--style")){
-            searchIcon.src = "/src/img/icons/home-main/icon-search.svg";
-        }else if(input.value === "" && body.className.includes("night--style")){
-            searchIcon.src = "/src/img/icons/home-main/icon-search-modo-noct.svg";
-        }
-    });
-
-    searchIcon.addEventListener("click",()=>{
-        input.value = "";
-        resultsContainer.classList.add("hidden");
-        recomendations.classList.remove("hidden");
-        let ul = document.querySelector(".searchSuggestionsContainer");
-        let iconSearchInput= document.querySelector(".iconSearchInput");
-        ul.classList.add("hidden");
-        iconSearchInput.classList.add("hidden");
-        if(!body.className.includes("night--style")){
-            searchIcon.src = "/src/img/icons/home-main/icon-search.svg";
-        }else{
-            searchIcon.src = "/src/img/icons/home-main/icon-search-modo-noct.svg";
-        }
-    });
-} ;
-
-
-//Sugerencias de busqueda
-
-let searchSuggestionsContainer = document.querySelector(".searchSuggestionsContainer");
-
-//Funcion para hacer busqueda con el textContent de un container
-
-const searchWithClick = function(clickContainer,gifsContainer, input){
-    clickContainer.addEventListener("click",()=>{
-        let q = clickContainer.textContent;
-        input.value = q;
-        resultadosTitle.textContent = q;
-        gifsContainer.innerHTML = "";
-        if(resultsContainer.className.includes("hidden") && input.value !== ""){
-            resultsContainer.classList.remove("hidden");
-            recomendations.classList.add("hidden");
-        }else if(!resultsContainer.className.includes("hidden") && input.value !== ""){}
-        else{
-            resultsContainer.classList.add("hidden");
-            recomendations.classList.remove("hidden");
-        }
-        buscarGifs(q, gifsContainer, 0);
-    });
-}
-
-const autocomplete = async(q,input,gifsContainer) =>{
-    const autocompleteEndpoint = `https://api.giphy.com/v1/gifs/search/tags?api_key=${apikey}&q=${q}`;
-    const responseHttp = await fetch(autocompleteEndpoint);
-    const responseJson = await responseHttp.json();
-    let arraySugerencias = responseJson.data;                                                           
-    if(q !== ""){
-        searchSuggestionsContainer.innerHTML = "";
-        searchSuggestionsContainer.classList.remove("hidden");
-        for(objetoSugerencia of arraySugerencias){
-            let sugerencia = document.createElement("li");
-            let iconSearchSugerencia = document.createElement("img");
-            iconSearchSugerencia.src = "/src/img/icons/home-main/white-search-icon-png-18.png";
-            sugerencia.classList.add("sugerencia");
-            iconSearchSugerencia.classList.add("iconSearchSugerencia");
-
-            searchSuggestionsContainer.appendChild(sugerencia);
-            sugerencia.textContent = objetoSugerencia.name; 
-            sugerencia.appendChild(iconSearchSugerencia); 
-
-            searchWithClick(sugerencia,gifsContainer, input);
-        }
-    }else{
-        searchSuggestionsContainer.innerHTML = "";
-        searchSuggestionsContainer.classList.add("hidden");
-    }
-}
-
-
-//Que aparezca un botón de busqueda en el input que se clickeó
-
-const viewSearchButton = function(busquedaContainer, input, gifsContainer, searchButton){
-    busquedaContainer.addEventListener("keyup",()=>{
-        if(input.value !== ""){
-        searchButton.classList.remove("hidden");
-        searchButton.classList.add("iconSearchInput");
-    }else{
-        searchButton.classList.add("hidden");
-        searchButton.classList.remove("iconSearchInput");
-    }
-    });
-
-    searchButton.addEventListener("click", ()=>{
-        let q = input.value;
-        resultadosTitle.textContent = q;
-        gifsContainer.innerHTML = "";
-        if(resultsContainer.className.includes("hidden") && q !== ""){
-        resultsContainer.classList.remove("hidden");
-        recomendations.classList.add("hidden");
-    }else if(!resultsContainer.className.includes("hidden") && q !== ""){}
-    else{
-        resultsContainer.classList.add("hidden");
-        recomendations.classList.remove("hidden");
-    }
-    buscarGifs(q, gifsContainer, 0);
-
-    });
-
-    }
-
-const trendingWords = async function(wordsContainer, input, gifsContainer){
-    const trendingWordsEndpoint = `https://api.giphy.com/v1/trending/searches?api_key=${apikey}`;
-    const responseHTML = await fetch(trendingWordsEndpoint);
-    const responseJson = await responseHTML.json();
-    const arrayWords = responseJson.data;
-    for (let i = 0; i < 5; i++) {
-        const word = arrayWords[i];
-        let wordContainer = document.createElement("a");
-        let spacing = document.createElement("a");
-        wordContainer.classList.add("element__suggestions");
-        spacing.classList.add("element__suggestions");
-        wordContainer.textContent = word;
-        spacing.textContent = ",  ";
-        
-        if(i=== 4){
-            wordsContainer.appendChild(wordContainer);
-        }else{
-            wordsContainer.appendChild(wordContainer);
-            wordsContainer.appendChild(spacing);
-        }
-
-        wordContainer.addEventListener("click", ()=>{
-            searchWithClick(wordContainer,gifsContainer,input);
-        });
-    }
-}
-//Llamado e impresión de los gifs del trending
-
-const trendingGifs = async(gifsContainer) =>{
-    const trendingEndpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}`;
-    const responseHttp = await fetch(trendingEndpoint);
-    const responseJson = await responseHttp.json();
-    const arrayTrendings = responseJson.data;
-    printGifs(arrayTrendings, gifsContainer);
-}
-
-
-

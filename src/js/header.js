@@ -18,7 +18,6 @@ let iconoBusqueda = document.querySelector("#hideSearch label img");
 //ESTADO DE NIGHT MODE GUARDADO EN LOCAL STORAGE
 
 let localSetHeader = function(){
-
     localStorage.setItem("bodyClassname", body.className);
     localStorage.setItem("headerClassname", header.className);
     localStorage.setItem("menuDesplegableClassname", menuDesplegable.className);
@@ -34,21 +33,25 @@ let localSetHeader = function(){
     localStorage.setItem("burgerMenuSrc", burgerMenu.src);
 }
 
-localSetHeader();
+let bodyClassname = localStorage.getItem("bodyClassname");
 
-body.className = localStorage.getItem("bodyClassname");
-header.className = localStorage.getItem("headerClassname");
-menuDesplegable.className = localStorage.getItem("menuDesplegableClassname");
-iconoBusqueda.className = localStorage.getItem("iconoBusquedaClassname");
-iconoBusqueda.className = localStorage.getItem("iconoBusquedaClassname");
-hideSearchContainer.className = localStorage.getItem("hideSearchContainerClassname");
-hideSearchInput.className = localStorage.getItem("hideSearchInputClassname");
-nightModeButton.textContent = localStorage.getItem("nightModeButtonTextContent");
-newGifButton.src = localStorage.getItem("newGifButtonSrc");
-logoMobile.src = localStorage.getItem("logoMobileSrc");
-logoDesktop.src = localStorage.getItem("logoDesktopSrc");
-searchIcon2.src = localStorage.getItem("searchIcon2Src"); 
-cambiarMenu(); 
+if(bodyClassname !== null){
+    body.className = localStorage.getItem("bodyClassname");
+    headerClassname = header.className = localStorage.getItem("headerClassname");
+    menuDesplegable.className = localStorage.getItem("menuDesplegableClassname");
+    nightModeButton.textContent = localStorage.getItem("nightModeButtonTextContent");
+    newGifButton.src = localStorage.getItem("newGifButtonSrc");
+    logoMobile.src = localStorage.getItem("logoMobileSrc");
+    logoDesktop.src = localStorage.getItem("logoDesktopSrc");
+    if(iconoBusqueda !== null){
+        iconoBusqueda.className = localStorage.getItem("iconoBusquedaClassname");
+        iconoBusqueda.className = localStorage.getItem("iconoBusquedaClassname");
+        hideSearchContainer.className = localStorage.getItem("hideSearchContainerClassname");
+        hideSearchInput.className = localStorage.getItem("hideSearchInputClassname");
+        searchIcon2.src = localStorage.getItem("searchIcon2Src"); 
+    }
+    cambiarMenu(); 
+}
 
 if(body.className.includes("night--style")){
     if(screen.width >= 1220){
@@ -79,12 +82,16 @@ nightModeButton.addEventListener("click",() =>{
         logoMobile.src = "/src/img/icons/header/logo-mobile-modo-noct.svg";
         logoDesktop.src = "/src/img/icons/header/logo-desktop-modo-noc.svg";
         searchIcon2.src = "/src/img/icons/home-main/icon-search-modo-noct.svg";
+        closeOpenWindow.src = "/src/img/icons/header/close-modo-noct.svg";
+        openWindow.classList.add("openWindowNightStyle");
     }else{
         nightModeButton.textContent = "Modo Nocturno";
         newGifButton.src = "/src/img/icons/header/button-crear-gifo.svg";
         logoMobile.src = "/src/img/icons/header/logo-mobile.svg";
         logoDesktop.src = "/src/img/icons/header/logo-desktop.svg";
         searchIcon2.src = "/src/img/icons/home-main/icon-search.svg";
+        closeOpenWindow.src = "/src/img/icons/header/close.svg";
+        openWindow.classList.remove("openWindowNightStyle");
     }
     cambiarMenu();
     localSetHeader();
@@ -100,23 +107,24 @@ labelMenu.addEventListener("click",() => {
     localStorage.setItem("burgerMenuSrc", burgerMenu.src);
 });
 
-
-function viewHeaderSearch(){
-    //Variable que me indica que tanto se alejo el usuario de arriba de todo, haciendo scroll:
-    let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+if(hideSearchContainer){
+    function viewHeaderSearch(){
+        //Variable que me indica que tanto se alejo el usuario de arriba de todo, haciendo scroll:
+        let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        
+        if(scrollTop >= 450 && window.screen.width >= 1220){
+            hideSearchContainer.classList.add("search-container__header");
+            logoContainer.classList.add("fixLogo");
     
-    if(scrollTop >= 450 && window.screen.width >= 1220){
-        hideSearch.classList.add("search-container__header");
-        logoContainer.classList.add("fixLogo");
-
-    }else{
-        hideSearch.classList.remove("search-container__header");
-        logoContainer.classList.remove("fixLogo");
-
+        }else{
+            hideSearchContainer.classList.remove("search-container__header");
+            logoContainer.classList.remove("fixLogo");
+        }
     }
+    window.onscroll = viewHeaderSearch;
+        
 }
 
-window.onscroll = viewHeaderSearch;
 
 
 
