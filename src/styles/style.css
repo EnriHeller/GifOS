@@ -375,7 +375,11 @@
 }
 
 .category-icon {
-  margin-top: 150px;
+  margin-top: 120px;
+}
+
+.ci2 {
+  margin-bottom: 30px;
 }
 
 .titulo-bis__main {
@@ -383,7 +387,9 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  margin-top: 7px;
+  margin: 7px 0 26px 0;
+  width: 60%;
+  text-align: center;
 }
 
 .grilla-gif__main {
@@ -423,6 +429,20 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.noFavoritesYet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #5ED7C6;
 }
 
 @media screen and (min-width: 1100px) {
@@ -470,14 +490,17 @@
 
 .close__open-window {
   margin-left: 90vw;
-  margin-right: 10vw;
+  margin-right: 10%;
   margin-bottom: 6%;
+  position: relative;
+  top: 5%;
 }
 
 .gif-image__open-window {
-  width: 318px;
-  height: 245px;
+  width: 500px;
+  height: 345px;
   margin: auto;
+  margin-top: 36px;
 }
 
 .open-window-options {
@@ -519,17 +542,26 @@
   height: 32px;
 }
 
+@media screen and (max-width: 720px) {
+  .gif-image__open-window {
+    width: 350px;
+    height: 270px;
+  }
+}
+
 @media screen and (min-width: 1220px) {
   .close__open-window {
     width: 18px;
-    margin-top: 15vw;
+    margin: 15% 0 6% 66%;
   }
   .openWindowInfo {
     margin-bottom: 50%;
   }
-  .gif-image__open-window {
-    width: 500px;
-    height: 345px;
+}
+
+@media screen and (max-height: 700px) {
+  .close__open-window {
+    top: 20%;
   }
 }
 
@@ -749,7 +781,6 @@
 .main__crear-gifo {
   width: 90%;
   margin: 120px auto;
-  height: 80vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 20% 60% 20%;
@@ -760,8 +791,9 @@
 
 .cam-container__crear-gifo {
   width: 90%;
+  min-width: 150px;
   height: auto;
-  margin: auto auto 40% 20%;
+  margin: auto auto 100px 0;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: 1/ 1 / 1 / 1;
@@ -805,7 +837,7 @@
 
 .rec-container {
   width: 100%;
-  height: 100%;
+  height: 55vh;
   border: 1px solid #572EE5;
   -ms-grid-row: 1;
   -ms-grid-column: 2;
@@ -854,8 +886,6 @@
 
 .video-container {
   margin: auto;
-  width: 70%;
-  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -877,6 +907,8 @@
   font-weight: 700;
   font-size: 25px;
   line-height: 35px;
+  text-align: center;
+  max-width: 300px;
 }
 
 .titulo__creargifo span {
@@ -891,9 +923,11 @@
   line-height: 19px;
   color: black;
   line-height: 29px;
+  max-width: 400px;
 }
 
 .rec-options-container {
+  width: 100%;
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   -ms-grid-column: 2;
@@ -995,6 +1029,161 @@
   margin-top: 250px;
 }
 
+.stepSelection {
+  background-color: #572EE5;
+  color: white;
+}
+
+.videoViewer, .charge-gifo-window {
+  width: 330px;
+  height: 250px;
+}
+
+.timer, .repetir {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  position: relative;
+  bottom: 25px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.repetir {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.repetir:hover {
+  -webkit-text-decoration: underline solid 2px #5ED7C6;
+          text-decoration: underline solid 2px #5ED7C6;
+}
+
+.charge-gifo-window {
+  position: absolute;
+  z-index: 10000;
+  background-color: rgba(87, 46, 229, 0.6);
+  color: #FFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.charge-gifo-icon {
+  margin: 30% 0 10px;
+}
+
+.download-mi-gif {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 10px 10px -40px;
+}
+
+@media screen and (max-width: 400px) {
+  .videoViewer, .charge-gifo-window {
+    width: 250px;
+    height: 190px;
+  }
+  .rec-container {
+    min-width: auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .cam-container__crear-gifo, #pelicula {
+    display: none;
+  }
+  .main__crear-gifo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@-webkit-keyframes rotation {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes recLight {
+  100% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+
+@keyframes recLight {
+  100% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+
+.cinta1Animation {
+  -webkit-animation: rotation 2s infinite steps(60);
+          animation: rotation 2s infinite steps(60);
+}
+
+.cinta2Animation {
+  -webkit-animation: rotation 3s infinite steps(60);
+          animation: rotation 3s infinite steps(60);
+}
+
+.lightAnimation {
+  -webkit-animation: recLight 1s infinite steps(60);
+          animation: recLight 1s infinite steps(60);
+}
+
+.loaderAnimation {
+  -webkit-animation: rotation 1s infinite steps(60);
+          animation: rotation 1s infinite steps(60);
+}
+
 .night--style {
   background-color: #37383C;
   color: #FFFF;
@@ -1067,6 +1256,11 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin: 8px 0;
+  border-radius: 40px;
+}
+
+.sugerencia:hover {
+  background-color: #572EE5;
 }
 
 .iconSearchSugerencia {
@@ -1086,5 +1280,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.active-class {
+  color: #9CAFC3;
 }
 /*# sourceMappingURL=style.css.map */

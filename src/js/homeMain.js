@@ -25,15 +25,14 @@ const buscarGifs = async (q, gifsContainer, offset) => {
     let gifObjects = responseJson.data;
     let verMas = document.getElementById('verMas');
     try {
-        if(gifObjects.lenght !== 0){
+        if(gifObjects.length !== 0){
             gifsContainer.classList.remove("noResultsDistribution");
             verMas.classList.remove('hidden');
-            printGifs(gifObjects, gifsContainer);
+            printGifs(gifObjects, gifsContainer, 12);
         }else{
             throw new Error();
         }
     } catch (error) {
-        console.log("Falló la promesa buscarGifs");
         let noResultsImage= document.createElement("img");
         noResultsImage.src = "/src/img/home/icon-busqueda-sin-resultado.svg";
         let noResultsMessage = document.createElement("h3");

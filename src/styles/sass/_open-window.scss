@@ -13,14 +13,17 @@
 
 .close__open-window{
     margin-left: 90vw;
-    margin-right: 10vw;
+    margin-right: 10%;
     margin-bottom: 6%;
+    position: relative;
+    top: 5%;
 }
 
 .gif-image__open-window{
-    width: 318px;
-    height: 245px;
+    width: 500px;
+    height: 345px;
     margin: auto;
+    margin-top: 36px;
 }
 
 .open-window-options{
@@ -54,18 +57,27 @@
     height: 32px;
 }
 
+@media screen and (max-width: 720px){
+    .gif-image__open-window{
+        width:350px;
+        height: 270px;
+    }
+}
+
 @media screen and (min-width: 1220px) {
     .close__open-window{
         width: 18px;
-        margin-top: 15vw;
+        margin: 15% 0 6% 66%;
+        
     }
 
     .openWindowInfo{
         margin-bottom: 50%;
     }
+}
 
-    .gif-image__open-window {
-        width: 500px;
-        height: 345px;
+@media screen and (max-height : 700px){
+    .close__open-window{
+        top: 20%;
     }
 }

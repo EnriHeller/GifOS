@@ -18,27 +18,19 @@
                 <img src="./src/img/icons/header/logo-mobile.svg" alt="GIFOS" class="imagen-mobile__logo" id="logoMobile">
                 <img src="./src/img/icons/header/logo-desktop.svg" class="imagen-desktop__logo" id="logoDesktop" alt="GIFOS">
             </a>
-    
-            <div class="hide-search" id="hideSearch">
-                <input class="search__principal" type="search" name="busqueda" id="busqueda2" placeholder="Busca GIFOS y más">
-        
-                <label for="busqueda" class="search-icon__principal">
-                    <img src="./src/img/icons/home-main/icon-search.svg" alt="Buscar" id="searchIcon2">
-                </label>
-            </div>
-    
+
             <input type="checkbox" id="menu" class="check" name="check">
             <label for="menu" class="boton__cabecera" id="labelMenu">
                 <img src="./src/img/icons/header/burger.svg" alt="menu" id="burgerMenu">
             </label> <!-- boton menu -->
-    
+
             <nav class="menu-desplegable__cabecera" id="menuDesplegable">
                 
                 <a href="#" class="opcion-menu__cabecera" id="nightModeButton">
                     Modo Nocturno 
                 </a>    
                 <div class="line-decoration-2"></div> 
-    
+
                 <a href="./favoritos.html" class="opcion-menu__cabecera">
                     Favoritos
                 </a>
@@ -50,9 +42,8 @@
                 <div class="line-decoration-2"></div> 
     
                 <a href="./crear-gifo.html" class="opcion-menu__cabecera newgif">
-                    <img class="newgif" id="newGifButton" src="./src/img/icons/header/button-crear-gifo.svg" alt="Crear GIFOS">
+                    <img class="newgif" id="newGifButton" src="./src/img/icons/header/CTA-crear-gifo-active.svg" alt="Crear GIFOS">
                 </a>
-                
             </nav>
         </header>
         
@@ -67,51 +58,41 @@
                     <img src="./src/img/creargifo/element-luz-camara.svg" class="cam-light" alt="cam light">
                 </div>
             </div>
-
             <article class="rec-container" id="recContainer">
                 <div class="recuadro-container">
                     <div class="recuadro"></div>
                     <div class="recuadro recuadro2"></div>
                 </div>
                 <div class="video-container">
-                    <h2 class="titulo__creargifo">Aquí podrás</h2>
-                    <h2 class="titulo__creargifo"> crear tus propios <span>GIFOS</span></h2>
-
-                    <p class="parrafo__creargifo">¡Crea tu GIFO en sólo 3 pasos!</p>
-                    <p class="parrafo__creargifo">(sólo necesitas una cámara para grabar un video)</p>
+                    <h2 class="titulo__creargifo">Aquí podrás crear tus propios <span>GIFOS</span></h2>
+                    <p class="parrafo__creargifo">¡Crea tu GIFO en sólo 3 pasos! (sólo necesitas una cámara para grabar un video)</p>
                 </div>
                 <div class="recuadro-container">
                     <div class="recuadro recuadro3"></div>
                     <div class="recuadro recuadro1"></div>
                 </div>
             </article>
-
             <div class="rec-options-container">
                 <div class="steps">
                     <p class="step">1</p>
                     <p class="step">2</p>
                     <p class="step">3</p>
                 </div>
-                
+                <div class="timer hidden">00:00:00</div>
+                <a href="#" class="repetir hidden">REPETIR CAPTURA</a>
                 <div class="line-decoration-3">
                 </div>
-
                 <a href="#" class="boton-comenzar" id="botonComenzar">Comenzar</a>
+                <a href="#" class="boton-comenzar hidden" id="botonGrabar">Grabar</a>
+                <a href="#" class="boton-comenzar hidden" id="botonFinalizar">Finalizar</a>
+                <a href="#" class="boton-comenzar hidden" id="botonSubir">Subir gifo</a>
             </div>
-
             <div class="cinta-derecha">
                 <img src="./src/img/creargifo/pelicula.svg" alt="pelicula" id="pelicula">
             </div>
-
-
-
-
-
         </main>
-    
         <footer class="footer">
             <p class="parrafo__footer">Compartir en:</p>
-    
             <div class="icons-container__footer">
                 <a href="icon__footer" >
                     <img src="./src/img/icons/footer/icon_facebook.svg" alt="Facebook" id="facebook">
@@ -123,14 +104,12 @@
                     <img src="./src/img/icons/footer/icon_instagram.svg" alt="Instagram" id="instagram">
                 </a>
             </div>
-    
             <p class="parrafo__footer">© GIFOS 2020 All Rights Reserved.</p>
         </footer>
-    
         <div class="line-decoration-1" ></div>
-        
         <script src = "./src/js/functions.js"></script>
         <script src = "./src/js/header.js"></script>
+        <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
         <script src = "/src/js/crearGifo.js"></script>
         <script src = "./src/js/footer.js"></script>
     </body>

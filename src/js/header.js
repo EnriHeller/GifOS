@@ -11,9 +11,10 @@ let nightModeButton = document.getElementById("nightModeButton");
 let newGifButton = document.getElementById("newGifButton");
 let menuDesplegable = document.getElementById("menuDesplegable");
 let hideSearchContainer = document.getElementById("hideSearch");
-let hideSearchInput = document.querySelector("header input")
+let hideSearchInput = document.getElementById("busquedaHeader")
 let searchIcon2 = document. getElementById("searchIcon2");
 let iconoBusqueda = document.querySelector("#hideSearch label img");
+let pelicula = document.getElementById("pelicula");
 
 //ESTADO DE NIGHT MODE GUARDADO EN LOCAL STORAGE
 
@@ -21,15 +22,16 @@ let localSetHeader = function(){
     localStorage.setItem("bodyClassname", body.className);
     localStorage.setItem("headerClassname", header.className);
     localStorage.setItem("menuDesplegableClassname", menuDesplegable.className);
-    localStorage.setItem("iconoBusquedaClassname", iconoBusqueda.className);
-    localStorage.setItem("iconoBusquedaClassname", iconoBusqueda.className);
-    localStorage.setItem("hideSearchContainerClassname", hideSearchContainer.className);
-    localStorage.setItem("hideSearchInputClassname", hideSearchInput.className);
+    try{
+        localStorage.setItem("iconoBusquedaClassname", iconoBusqueda.className);
+        localStorage.setItem("hideSearchContainerClassname", hideSearchContainer.className);
+        localStorage.setItem("hideSearchInputClassname", hideSearchInput.className);
+        localStorage.setItem("searchIcon2Src", searchIcon2.src);
+    }catch{}
     localStorage.setItem("nightModeButtonTextContent", nightModeButton.textContent);
     localStorage.setItem("newGifButtonSrc", newGifButton.src);
     localStorage.setItem("logoMobileSrc", logoMobile.src);
     localStorage.setItem("logoDesktopSrc", logoDesktop.src);
-    localStorage.setItem("searchIcon2Src", searchIcon2.src);
     localStorage.setItem("burgerMenuSrc", burgerMenu.src);
 }
 
@@ -44,7 +46,6 @@ if(bodyClassname !== null){
     logoMobile.src = localStorage.getItem("logoMobileSrc");
     logoDesktop.src = localStorage.getItem("logoDesktopSrc");
     if(iconoBusqueda !== null){
-        iconoBusqueda.className = localStorage.getItem("iconoBusquedaClassname");
         iconoBusqueda.className = localStorage.getItem("iconoBusquedaClassname");
         hideSearchContainer.className = localStorage.getItem("hideSearchContainerClassname");
         hideSearchInput.className = localStorage.getItem("hideSearchInputClassname");
@@ -66,9 +67,13 @@ nightModeButton.addEventListener("click",() =>{
     nightClass(body);
     nightClass(header);
     nightClass2(menuDesplegable);
-    nightClass(iconoBusqueda);
-    nightBorders(hideSearchContainer);
-    nightClass(hideSearchInput);
+    if(hideSearchInput !== null){
+        nightBorders(hideSearchContainer);
+        nightClass(hideSearchInput);
+        nightClass(iconoBusqueda);
+        searchIcon2.src = "/src/img/icons/home-main/icon-search-modo-noct.svg";
+    }
+    
 
     if(screen.width >= 1220){
         for (opcion of headerOpcionMenu){
@@ -81,25 +86,33 @@ nightModeButton.addEventListener("click",() =>{
         newGifButton.src = "/src/img/icons/header/crear-gifo-modo-noc.svg";
         logoMobile.src = "/src/img/icons/header/logo-mobile-modo-noct.svg";
         logoDesktop.src = "/src/img/icons/header/logo-desktop-modo-noc.svg";
-        searchIcon2.src = "/src/img/icons/home-main/icon-search-modo-noct.svg";
+        
         closeOpenWindow.src = "/src/img/icons/header/close-modo-noct.svg";
         openWindow.classList.add("openWindowNightStyle");
     }else{
         nightModeButton.textContent = "Modo Nocturno";
-        newGifButton.src = "/src/img/icons/header/button-crear-gifo.svg";
+        if(pelicula){
+            newGifButton.src = "/src/img/icons/header/CTA-crear-gifo-active.svg";
+        }else{
+            newGifButton.src = "/src/img/icons/header/button-crear-gifo.svg";
+        }
         logoMobile.src = "/src/img/icons/header/logo-mobile.svg";
         logoDesktop.src = "/src/img/icons/header/logo-desktop.svg";
-        searchIcon2.src = "/src/img/icons/home-main/icon-search.svg";
-        closeOpenWindow.src = "/src/img/icons/header/close.svg";
-        openWindow.classList.remove("openWindowNightStyle");
+        try{
+            searchIcon2.src = "/src/img/icons/home-main/icon-search.svg";
+            closeOpenWindow.src = "/src/img/icons/header/close.svg";
+            openWindow.classList.remove("openWindowNightStyle");
+        }catch{}
     }
     cambiarMenu();
     localSetHeader();
 });
 
-hover(newGifButton, "/src/img/icons/header/crear-gifo-hover.svg","/src/img/icons/header/button-crear-gifo.svg" );
+if(!pelicula){
+    hover(newGifButton, "/src/img/icons/header/crear-gifo-hover.svg","/src/img/icons/header/button-crear-gifo.svg" );
+    Nighthover(newGifButton,"/src/img/icons/header/crear-gifo-hover-modo-noc.svg","/src/img/icons/header/crear-gifo-modo-noc.svg");
+}
 
-Nighthover(newGifButton,"/src/img/icons/header/crear-gifo-hover-modo-noc.svg","/src/img/icons/header/crear-gifo-modo-noc.svg");
 
 labelMenu.addEventListener("click",() => {
     burgerMenu.classList.toggle("open");

@@ -53,6 +53,11 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
     margin: 8px 0;
+    border-radius: 40px;
+}
+
+.sugerencia:hover{
+    background-color: $primary-color;
 }
 
 .iconSearchSugerencia{
@@ -70,3 +75,6 @@
     align-items: center;
 }
 
+.active-class{
+    color: $active-link;
+}

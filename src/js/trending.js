@@ -27,7 +27,6 @@ nightModeButton.addEventListener("click",() =>{
 
 trendingButtonLeft.onclick = function(){
     sliderContainer.scrollLeft -= 790; 
-    console.log(sliderContainer)
 }
 
 trendingButtonRight.onclick = function(){
@@ -55,6 +54,6 @@ const trendingGifs = async(gifsContainer) =>{
     const responseHttp = await fetch(trendingEndpoint);
     const responseJson = await responseHttp.json();
     const arrayTrendings = responseJson.data;
-    printGifs(arrayTrendings, gifsContainer);
+    printGifs(arrayTrendings, gifsContainer,25);
 } 
 trendingGifs(sliderContainer);

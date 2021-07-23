@@ -10,91 +10,68 @@
         <title>GIFOS - Favoritos</title>
     </head>
 <body class="body" id="body">
-
     <div class="open-window hidden" id="openWindow">
-    
-        <img alt="close" class="close__open-window" id="closeOpenWindow">
-        
-
-        <div class="gifs-container__open-window" id="gifsContainerOpenWindow">
-
-        </div>
+        <img alt="close" class="close__open-window" id="closeOpenWindow" src="./src/img/icons/header/close.svg">
+        <div class="gifs-container__open-window" id="gifsContainerOpenWindow"></div>
     </div>
-
     <header class="header" id="header">
         <a href="./index.html" class="logo__cabecera" id="logoContainer">
             <img src="./src/img/icons/header/logo-mobile.svg" alt="GIFOS" class="imagen-mobile__logo" id="logoMobile">
             <img src="./src/img/icons/header/logo-desktop.svg" class="imagen-desktop__logo" id="logoDesktop" alt="GIFOS">
         </a>
-
-
         <input type="checkbox" id="menu" class="check" name="check">
         <label for="menu" class="boton__cabecera" id="labelMenu">
             <img src="./src/img/icons/header/burger.svg" alt="menu" id="burgerMenu">
-        </label> <!-- boton menu -->
-
+        </label>
         <nav class="menu-desplegable__cabecera" id="menuDesplegable">
             
             <a href="#" class="opcion-menu__cabecera" id="nightModeButton">
                 Modo Nocturno 
             </a>    
             <div class="line-decoration-2"></div> 
-
-            <a href="./favoritos.html" class="opcion-menu__cabecera">
+            <a href="./favoritos.html" class="opcion-menu__cabecera active-class">
                 Favoritos
             </a>
             <div class="line-decoration-2"></div>       
-            
             <a href="./misgifos.html" class="opcion-menu__cabecera">
                 Mis GIFOS
             </a>
             <div class="line-decoration-2"></div> 
-
             <a href="./crear-gifo.html" class="opcion-menu__cabecera newgif">
                 <img class="newgif" id="newGifButton" src="./src/img/icons/header/button-crear-gifo.svg" alt="Crear GIFOS">
             </a>
-            
         </nav>
     </header>
-
     <main class="main">
-
         <img src="./src/img/icons/favoritos-main/icon-favoritos.svg" alt="Favoritos icon" class="category-icon">
         <h2 class="titulo-bis__main">Favoritos</h2>
-
-        <article class="grilla-gif__main" id="grillaFav">
-
-        </article>
-
+        <div class="noFavoritesYet" id="noFavoritesYet">
+            <img src="./src/img/favoritos/icon-fav-sin-contenido.svg" alt="Sin favoritos" class="category-icon ci2">
+            <h2 class="titulo-bis__main">¡Guarda tu primer GIFO en Favoritos 
+                para que se muestre aquí!</h2>
+        </div>
+        <div class="grilla-gif__main" id="grillaFav">
+        </div>
         <button class="ver-mas__main">
             <img src="./src/img/icons/favoritos-main/ver-mas.svg" alt="Ver Más" id="verMas">
         </button>
-
         <section class="trending" id="trending">
             <h3 class="subtitulo__trending">Trending GIFOS</h3>
-
             <p class="parrafo__trending">Mira los últimos GIFOS de nuestra comunidad.</p>
-
             <div class="carrousel">
                 <div class="boton__trending">
                     <img id="trendingButtonLeft" src="./src/img/icons/home-main/button-slider-left.svg" alt="Previous" class="previous">
                 </div>
-                
                 <div class="slider-container__trending" id="sliderContainer">
                 </div>
-
                 <div class="boton__trending">
                     <img id="trendingButtonRight" src="./src/img/icons/home-main/button-slider-right.svg" alt="Next">
                 </div>
             </div>
-
         </section>
-
     </main>
-
     <footer class="footer">
         <p class="parrafo__footer">Compartir en:</p>
-
         <div class="icons-container__footer">
             <a href="icon__footer" >
                 <img src="./src/img/icons/footer/icon_facebook.svg" alt="Facebook" id="facebook">
@@ -106,15 +83,12 @@
                 <img src="./src/img/icons/footer/icon_instagram.svg" alt="Instagram" id="instagram">
             </a>
         </div>
-
         <p class="parrafo__footer">© GIFOS 2020 All Rights Reserved.</p>
     </footer>
-
     <div class="line-decoration-1" ></div>
-
     <script src="./src/js/functions.js"></script>
     <script src = "./src/js/header.js"></script>
-    <script src = "./src/js/alternativeMain.js"></script>
+    <script src = "./src/js/favMain.js"></script>
     <script src = "./src/js/trending.js"></script>
     <script src = "./src/js/footer.js"></script>
 </body>

@@ -3,6 +3,7 @@
 let nightClass = function(element){
     element.classList.toggle("night--style");
 }
+
 let nightClass2 = function(element){
     element.classList.toggle("night--style2");
 }
@@ -72,7 +73,6 @@ function activeClass(element, activeImage, inactiveImage, hoverImage){
     }
     element.addEventListener("click", ()=>{
         element.classList.toggle("active");
-        console.log(element.className);
         if(!element.className.includes("active")){
             element.src = inactiveImage;
             hover(element,inactiveImage,hoverImage);
@@ -108,27 +108,36 @@ const apikey = "G9CuhKrAX6tHRAawnwsHTER482T7FSZK";
 let favArray = [];
 let favArrayLS = localStorage.getItem("favArray")
 if(favArrayLS !== null){
-    favArray = JSON.parse(favArrayLS)
+    favArray = JSON.parse(favArrayLS);
 }
 
 let openWindow = document.getElementById("openWindow");
 let closeOpenWindow = document.getElementById("closeOpenWindow");
-
 let gifsContainerOpenWindow = document.getElementById("gifsContainerOpenWindow");
 
-closeOpenWindow.addEventListener("click",()=>{
-    openWindow.classList.add("hidden");
-});
+if(closeOpenWindow !==null){
+    closeOpenWindow.addEventListener("click",()=>{
+        openWindow.classList.add("hidden");
+    });
+}
 
+let misGifosArray = [];
+let misGifosArrayLS = localStorage.getItem("misGifosArray");
 
-function printGifs(gifArrayObjetos, gifsContainer){
-    if(gifArrayObjetos.lenght !== 0){
-        for(let i = 0; i < 12; i++){
+function printGifs(gifArrayObjetos, gifsContainer, limit, type){
+    if(gifArrayObjetos.length !== 0){
+        for(let i = 0; i < limit; i++){
             let gifObject = gifArrayObjetos[i];
             if(gifObject !== undefined){
-                let receivedImage = gifObject.images.fixed_width.url;
-                let receivedUser = gifObject.username;
-                let receivedTitle = gifObject.title;
+                if(type === "alternative"){
+                    var receivedImage = gifObject.data.images.fixed_width.url;
+                    var receivedUser = gifObject.data.username;
+                    var receivedTitle = gifObject.data.title;
+                }else{
+                    var receivedImage = gifObject.images.fixed_width.url;
+                    var receivedUser = gifObject.username;
+                    var receivedTitle = gifObject.title;
+                }
     
                 let gifContent = document.createElement("div");
                 let gifImage = document.createElement("img");
@@ -137,6 +146,7 @@ function printGifs(gifArrayObjetos, gifsContainer){
                 let favIcon = document.createElement("img");
                 let downloadIcon = document.createElement("img");
                 let expandIcon = document.createElement("img");
+                let removeIcon = document.createElement("img");
                 let gifInfo = document.createElement("gifInfo");
                 let user = document.createElement("p");
                 let gifTitle = document.createElement("p");
@@ -151,7 +161,11 @@ function printGifs(gifArrayObjetos, gifsContainer){
                 
                 hoverWindow.appendChild(hoverIcons);
                 hoverWindow.appendChild(gifInfo);
-                hoverIcons.appendChild(favIcon);
+                if(type === "alternative"){
+                    hoverIcons.appendChild(removeIcon);
+                }else{
+                    hoverIcons.appendChild(favIcon);
+                }
                 hoverIcons.appendChild(downloadIcon);
                 hoverIcons.appendChild(expandIcon);
                 gifInfo.appendChild(user);
@@ -160,6 +174,7 @@ function printGifs(gifArrayObjetos, gifsContainer){
                 favIcon.src = "/src/img/icons/home-main/hoverIcons/icon-fav.svg";
                 downloadIcon.src = "/src/img/icons/home-main/hoverIcons/icon-download.svg";
                 expandIcon.src = "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg";
+                removeIcon.src = "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg";
     
                 gifContent.classList.add("gif-content");
                 gifImage.classList.add("gif-image");
@@ -212,6 +227,15 @@ function printGifs(gifArrayObjetos, gifsContainer){
                         "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
                         "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
                 }
+                const removeSettings = function(icon){
+                    hover(icon,
+                        "/src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
+                    
+                    Nighthover(icon,
+                        "/src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
+                        "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
+                }
                 //Acciones para cada hover button
 
                 const addFavGif = function(icon){
@@ -225,9 +249,27 @@ function printGifs(gifArrayObjetos, gifsContainer){
                     localStorage.setItem("favArray", JSON.stringify(favArray));
                     
                     let favArrayInLocalStorage = localStorage.getItem("favArray");
-    
+
                     let FavArraySaved = JSON.parse(favArrayInLocalStorage);
     
+                }
+
+                const removeGif = function(){
+                    misGifosArray.push(misGifosArray.splice(misGifosArray.indexOf(gifObject),1)[0]);
+                    misGifosArray.pop();
+                    localStorage.setItem("misGifosArray", JSON.stringify(misGifosArray));
+                    misGifosArrayLS = localStorage.getItem("misGifosArray");
+                    misGifosArray = JSON.parse(misGifosArrayLS);
+                    if(misGifosArray.length !== 0){
+                        grillaMisGifos.innerHTML = "";
+                        printGifs(misGifosArray, grillaMisGifos, 12, "alternative")
+                        noCreatedGifosYet.classList.add("hidden");
+                        grillaMisGifos.classList.remove("hidden");
+                    }else if(noCreatedGifosYet.className.includes("hidden")){
+                        grillaMisGifos.classList.add("hidden");
+                        noCreatedGifosYet.classList.remove("hidden");
+                        verMas.classList.add("hidden");
+                    }
                 }
     
                 const downloadGif = function(){
@@ -263,6 +305,7 @@ function printGifs(gifArrayObjetos, gifsContainer){
                         let openWindowIcons = document.createElement("div");
                             let openWindowFav = favIcon.cloneNode();
                             let openWindowDownload = downloadIcon.cloneNode();
+                            let openWindowRemove = removeIcon.cloneNode();
                 
                     gifImageOpenWindow.classList.remove("gif-image");
                     gifImageOpenWindow.classList.add("gif-image__open-window");
@@ -277,7 +320,11 @@ function printGifs(gifArrayObjetos, gifsContainer){
                     openWindowOptions.appendChild(openWindowIcons);
                     openWindowInfo.appendChild(userOpenWindow);
                     openWindowInfo.appendChild(gifTitleOpenWindow);
-                    openWindowIcons.appendChild(openWindowFav);
+                    if(type === "alternative"){
+                        openWindowIcons.appendChild(openWindowRemove);
+                    }else{
+                        openWindowIcons.appendChild(openWindowFav);
+                    }
                     openWindowIcons.appendChild(openWindowDownload);
     
                     userOpenWindow.textContent = receivedUser;
@@ -291,17 +338,23 @@ function printGifs(gifArrayObjetos, gifsContainer){
                     downloadSettings(openWindowDownload);
                     openWindowDownload.addEventListener("click", ()=>{
                         downloadGif();
-                    })
+                    });
+
+                    removeSettings(openWindowRemove);
+                    openWindowRemove.addEventListener("click", () => {
+                        removeGif();
+                    });
                 }
     
                 let grillaFav = document.getElementById("grillaFav");
+                let noFavoritesYet = document.getElementById("noFavoritesYet");
 
                 favIconSettings(favIcon);
                 favIcon.addEventListener("click", ()=>{
                     addFavGif(favIcon);
-                    if(grillaFav && favArray.lenght !==0){
+                    if(favArray.length !==0){
                         grillaFav.innerHTML = "";
-                        printGifs(favArray,grillaFav);
+                        printGifs(favArray,grillaFav,12);
                         let activeFavIcons = document.querySelectorAll("#grillaFav .favIcon");
                         for (let i = 0; i < activeFavIcons.length; i++) {
                             const activeIcon = activeFavIcons[i];
@@ -310,16 +363,33 @@ function printGifs(gifArrayObjetos, gifsContainer){
                             hover(activeIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-active.svg","/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
                             Nighthover(activeIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-active.svg","/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
                         }
+                        noFavoritesYet.classList.add("hidden");
+                        grillaFav.classList.remove("hidden");
+                        if(favArray.length <= 12){
+                            verMas.classList.add("hidden");
+                        }
+
+                    }else if(noFavoritesYet.className.includes("hidden")){
+                        grillaFav.classList.add("hidden");
+                        noFavoritesYet.classList.remove("hidden");
+                        verMas.classList.add("hidden");
                     }
                 });
     
                 downloadSettings(downloadIcon);
-                downloadIcon.addEventListener("click",()=>{
-                    downloadGif();
-                })
+                downloadIcon.addEventListener("click", downloadGif)
     
                 expandSettings(expandIcon);
                 expandIcon.addEventListener("click", createElementsOpenWindow);
+
+                let grillaMisGifos = document.getElementById("grillaMisGifos");
+                let noCreatedGifosYet = document.getElementById("noCreatedGifosYet");
+
+                removeSettings(removeIcon);
+                removeIcon.addEventListener("click", ()=>{
+                    removeGif();
+                    
+                })
     
                 if(screen.width<1200){
                     hoverWindow.addEventListener("click", createElementsOpenWindow);
@@ -327,4 +397,10 @@ function printGifs(gifArrayObjetos, gifsContainer){
             }
         }
     } 
+}
+
+//Carga de gifos grabados a mis gifos
+
+if(misGifosArrayLS !== null){
+    misGifosArray = JSON.parse(misGifosArrayLS);
 }
