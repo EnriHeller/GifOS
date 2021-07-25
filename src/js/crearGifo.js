@@ -182,7 +182,6 @@ botonSubir.addEventListener("click",()=>{
                 })();
             });
         });
-
     })
 })
 
