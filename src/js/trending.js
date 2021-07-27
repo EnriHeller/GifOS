@@ -8,8 +8,8 @@ let downloadIcons = document.getElementsByClassName("downloadIcon");
 let expandIcons = document.getElementsByClassName("expandIcon");
 
 if(body.className.includes("night--style")){
-    trendingButtonLeft.setAttribute("src","./../src/img/icons/home-main/button-slider-left-md-noct.svg");
-    trendingButtonRight.setAttribute("src","./../src/img/icons/home-main/button-slider-right-md-noct.svg");
+    trendingButtonLeft.setAttribute("src","./../img/icons/home-main/button-slider-left-md-noct.svg");
+    trendingButtonRight.setAttribute("src","./../img/icons/home-main/button-slider-right-md-noct.svg");
     nightClass3(trending);
 }
 
@@ -17,11 +17,11 @@ if(body.className.includes("night--style")){
 nightModeButton.addEventListener("click",() =>{
     nightClass3(trending);
     if(body.className.includes("night--style")){
-        trendingButtonLeft.setAttribute("src","./../src/img/icons/home-main/button-slider-left-md-noct.svg");
-        trendingButtonRight.setAttribute("src","./../src/img/icons/home-main/button-slider-right-md-noct.svg");
+        trendingButtonLeft.setAttribute("src","./../img/icons/home-main/button-slider-left-md-noct.svg");
+        trendingButtonRight.setAttribute("src","./../img/icons/home-main/button-slider-right-md-noct.svg");
     }else{
-        trendingButtonLeft.setAttribute("src","./../src/img/icons/home-main/button-slider-left.svg");
-        trendingButtonRight.setAttribute("src","./../src/img/icons/home-main/button-slider-right.svg");
+        trendingButtonLeft.setAttribute("src","./../img/icons/home-main/button-slider-left.svg");
+        trendingButtonRight.setAttribute("src","./../img/icons/home-main/button-slider-right.svg");
     }
 });
 
@@ -35,19 +35,19 @@ trendingButtonRight.onclick = function(){
 
 //HOVERS
 
-hover(trendingButtonLeft,"./../src/img/icons/home-main/button-slider-left-hover.svg","./../src/img/icons/home-main/button-slider-left.svg");
+hover(trendingButtonLeft,"./../img/icons/home-main/button-slider-left-hover.svg","./../img/icons/home-main/button-slider-left.svg");
 
 Nighthover(trendingButtonLeft,
-        "./../src/img/icons/home-main/button-slider-left-hover.svg",
-        "./../src/img/icons/home-main/button-slider-left-md-noct.svg");
+        "./../img/icons/home-main/button-slider-left-hover.svg",
+        "./../img/icons/home-main/button-slider-left-md-noct.svg");
 
 hover(trendingButtonRight,
-        "./../src/img/icons/home-main/button-slider-right-hover.svg",
-        "./../src/img/icons/home-main/button-slider-right.svg");
+        "./../img/icons/home-main/button-slider-right-hover.svg",
+        "./../img/icons/home-main/button-slider-right.svg");
 
 Nighthover(trendingButtonRight,
-        "./../src/img/icons/home-main/button-slider-right-hover.svg",
-        "./../src/img/icons/home-main/button-slider-right-md-noct.svg");
+        "./../img/icons/home-main/button-slider-right-hover.svg",
+        "./../img/icons/home-main/button-slider-right-md-noct.svg");
 
 const trendingGifs = async(gifsContainer) =>{
     const trendingEndpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}`;

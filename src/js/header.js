@@ -71,7 +71,7 @@ nightModeButton.addEventListener("click",() =>{
         nightBorders(hideSearchContainer);
         nightClass(hideSearchInput);
         nightClass(iconoBusqueda);
-        searchIcon2.src = "./../src/img/icons/home-main/icon-search-modo-noct.svg";
+        searchIcon2.src = "./../img/icons/home-main/icon-search-modo-noct.svg";
     }
     
 
@@ -83,24 +83,24 @@ nightModeButton.addEventListener("click",() =>{
     
     if(body.className.includes("night--style")){
         nightModeButton.textContent = "Modo Diurno";
-        newGifButton.src = "./../src/img/icons/header/crear-gifo-modo-noc.svg";
-        logoMobile.src = "./../src/img/icons/header/logo-mobile-modo-noct.svg";
-        logoDesktop.src = "./../src/img/icons/header/logo-desktop-modo-noc.svg";
+        newGifButton.src = "./../img/icons/header/crear-gifo-modo-noc.svg";
+        logoMobile.src = "./../img/icons/header/logo-mobile-modo-noct.svg";
+        logoDesktop.src = "./../img/icons/header/logo-desktop-modo-noc.svg";
         
-        closeOpenWindow.src = "./../src/img/icons/header/close-modo-noct.svg";
+        closeOpenWindow.src = "./../img/icons/header/close-modo-noct.svg";
         openWindow.classList.add("openWindowNightStyle");
     }else{
         nightModeButton.textContent = "Modo Nocturno";
         if(pelicula){
-            newGifButton.src = "./../src/img/icons/header/CTA-crear-gifo-active.svg";
+            newGifButton.src = "./../img/icons/header/CTA-crear-gifo-active.svg";
         }else{
-            newGifButton.src = "./../src/img/icons/header/button-crear-gifo.svg";
+            newGifButton.src = "./../img/icons/header/button-crear-gifo.svg";
         }
-        logoMobile.src = "./../src/img/icons/header/logo-mobile.svg";
-        logoDesktop.src = "./../src/img/icons/header/logo-desktop.svg";
+        logoMobile.src = "./../img/icons/header/logo-mobile.svg";
+        logoDesktop.src = "./../img/icons/header/logo-desktop.svg";
         try{
-            searchIcon2.src = "./../src/img/icons/home-main/icon-search.svg";
-            closeOpenWindow.src = "./../src/img/icons/header/close.svg";
+            searchIcon2.src = "./../img/icons/home-main/icon-search.svg";
+            closeOpenWindow.src = "./../img/icons/header/close.svg";
             openWindow.classList.remove("openWindowNightStyle");
         }catch{}
     }
@@ -109,8 +109,8 @@ nightModeButton.addEventListener("click",() =>{
 });
 
 if(!pelicula){
-    hover(newGifButton, "./../src/img/icons/header/crear-gifo-hover.svg","./../src/img/icons/header/button-crear-gifo.svg" );
-    Nighthover(newGifButton,"./../src/img/icons/header/crear-gifo-hover-modo-noc.svg","./../src/img/icons/header/crear-gifo-modo-noc.svg");
+    hover(newGifButton, "./../img/icons/header/crear-gifo-hover.svg","./../img/icons/header/button-crear-gifo.svg" );
+    Nighthover(newGifButton,"./../img/icons/header/crear-gifo-hover-modo-noc.svg","./../img/icons/header/crear-gifo-modo-noc.svg");
 }
 
 
