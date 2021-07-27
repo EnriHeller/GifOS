@@ -34,6 +34,8 @@
 
 .gifs-container__open-window{
     align-self: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .openWindowIcons{
@@ -58,11 +60,16 @@
 }
 
 @media screen and (max-width: 720px){
-    .gif-image__open-window{
-        width:350px;
-        height: 270px;
+    .gifs-container__open-window{
+        width: 90vw;
     }
 }
+@media screen and (max-width: 520px){
+    .gif-image__open-window{
+        width:90vw;
+    }
+}
+
 
 @media screen and (min-width: 1220px) {
     .close__open-window{
