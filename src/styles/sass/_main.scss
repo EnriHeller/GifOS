@@ -4,6 +4,7 @@
 
 .main, .principal{
     @include column--disposition;
+    overflow: hidden;
 }
 
 .titulo__main{
