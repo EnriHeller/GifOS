@@ -19,15 +19,15 @@ let nightBorders = function(element){
 let cambiarMenu = function(){
     if(body.className.includes("night--style")){
         if(burgerMenu.className.includes("open")){
-            burgerMenu.src = "/src/img/icons/header/close-modo-noct.svg";
+            burgerMenu.src = "../src/img/icons/header/close-modo-noct.svg";
         }else{
-            burgerMenu.src = "/src/img/icons/header/burger-modo-noct.svg";
+            burgerMenu.src = "../src/img/icons/header/burger-modo-noct.svg";
         }
     }else{
         if(burgerMenu.className.includes("open")){
-            burgerMenu.src = "/src/img/icons/header/close.svg";
+            burgerMenu.src = "../src/img/icons/header/close.svg";
         }else{
-            burgerMenu.src = "/src/img/icons/header/burger.svg";
+            burgerMenu.src = "../src/img/icons/header/burger.svg";
         }
     }
 }
@@ -171,10 +171,10 @@ function printGifs(gifArrayObjetos, gifsContainer, limit, type){
                 gifInfo.appendChild(user);
                 gifInfo.appendChild(gifTitle);
     
-                favIcon.src = "/src/img/icons/home-main/hoverIcons/icon-fav.svg";
-                downloadIcon.src = "/src/img/icons/home-main/hoverIcons/icon-download.svg";
-                expandIcon.src = "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg";
-                removeIcon.src = "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg";
+                favIcon.src = "../src/img/icons/home-main/hoverIcons/icon-fav.svg";
+                downloadIcon.src = "../src/img/icons/home-main/hoverIcons/icon-download.svg";
+                expandIcon.src = "../src/img/icons/home-main/hoverIcons/icon-max-normal.svg";
+                removeIcon.src = "../src/img/icons/home-main/hoverIcons/icon-trash-normal.svg";
     
                 gifContent.classList.add("gif-content");
                 gifImage.classList.add("gif-image");
@@ -190,18 +190,18 @@ function printGifs(gifArrayObjetos, gifsContainer, limit, type){
 
                 const favIconSettings = function(icon){
 
-                    hover(icon,"/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-                    "/src/img/icons/home-main/hoverIcons/icon-fav.svg", "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
+                    hover(icon,"../src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
+                    "../src/img/icons/home-main/hoverIcons/icon-fav.svg", "../src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
 
                     Nighthover(icon,
-                        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-fav.svg", "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg"); 
+                        "../src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-fav.svg", "../src/img/icons/home-main/hoverIcons/icon-fav-active.svg"); 
 
                     activeClass(icon, 
-                        "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg", 
-                        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-fav.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-fav-hover.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-fav-active.svg", 
+                        "../src/img/icons/home-main/hoverIcons/icon-fav-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-fav.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-fav-hover.svg");
 
                     icon.addEventListener("click", ()=>{
                         localStorage.setItem("favIconClassName",icon.className)
@@ -210,31 +210,31 @@ function printGifs(gifArrayObjetos, gifsContainer, limit, type){
 
                 const downloadSettings = function(icon){
                     hover(icon, 
-                        "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-download.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-download.svg");
 
                     Nighthover(icon, 
-                        "/src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-download.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-download.svg");
                 }
 
                 const expandSettings = function(icon){
                     hover(icon,
-                        "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
                     
                     Nighthover(icon,
-                        "/src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-max-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-max-normal.svg");
                 }
                 const removeSettings = function(icon){
                     hover(icon,
-                        "/src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
                     
                     Nighthover(icon,
-                        "/src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
-                        "/src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
+                        "../src/img/icons/home-main/hoverIcons/icon-trash-hover.svg",
+                        "../src/img/icons/home-main/hoverIcons/icon-trash-normal.svg");
                 }
                 //Acciones para cada hover button
 
@@ -289,10 +289,10 @@ function printGifs(gifArrayObjetos, gifsContainer, limit, type){
                     openWindow.classList.remove("hidden");
                     if(body.className.includes("night--style")){
                         openWindow.classList.add("openWindowNightStyle");
-                        closeOpenWindow.src = "/src/img/icons/header/close-modo-noct.svg";
+                        closeOpenWindow.src = "../src/img/icons/header/close-modo-noct.svg";
                     }else{
                         openWindow.classList.remove("openWindowNightStyle");
-                        closeOpenWindow.src = "/src/img/icons/header/close.svg";
+                        closeOpenWindow.src = "../src/img/icons/header/close.svg";
     
                     }
                 
@@ -359,9 +359,9 @@ function printGifs(gifArrayObjetos, gifsContainer, limit, type){
                         for (let i = 0; i < activeFavIcons.length; i++) {
                             const activeIcon = activeFavIcons[i];
                             activeIcon.classList.add("active");
-                            activeIcon.src = "/src/img/icons/home-main/hoverIcons/icon-fav-active.svg";
-                            hover(activeIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-active.svg","/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
-                            Nighthover(activeIcon,"/src/img/icons/home-main/hoverIcons/icon-fav-active.svg","/src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
+                            activeIcon.src = "../src/img/icons/home-main/hoverIcons/icon-fav-active.svg";
+                            hover(activeIcon,"../src/img/icons/home-main/hoverIcons/icon-fav-active.svg","../src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
+                            Nighthover(activeIcon,"../src/img/icons/home-main/hoverIcons/icon-fav-active.svg","../src/img/icons/home-main/hoverIcons/icon-fav-active.svg");
                         }
                         noFavoritesYet.classList.add("hidden");
                         grillaFav.classList.remove("hidden");
