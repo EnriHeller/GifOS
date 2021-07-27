@@ -21,16 +21,16 @@ let crearGifosNightSettings = function(){
     nightClass(parrafoCrearGifo);
     nightBordersForArray(steps);
     if(body.className.includes("night--style")){
-        cinta1.src = "./../img/creargifo/element_cinta1-modo-noc.svg";
-        cinta2.src = "./../img/creargifo/element_cinta2-modo-noc.svg";
-        camBody.src = "./../img/creargifo/camara-modo-noc.png";
-        pelicula.src = "./../img/creargifo/pelicula-modo-noc.svg";
+        cinta1.src = "./src/img/creargifo/element_cinta1-modo-noc.svg";
+        cinta2.src = "./src/img/creargifo/element_cinta2-modo-noc.svg";
+        camBody.src = "./src/img/creargifo/camara-modo-noc.png";
+        pelicula.src = "./src/img/creargifo/pelicula-modo-noc.svg";
         
     }else{
-        cinta1.src = "./../img/creargifo/element_cinta1.svg";
-        cinta2.src = "./../img/creargifo/element_cinta2.svg";
-        camBody.src = "./../img/creargifo/element-camara.svg";
-        pelicula.src = "./../img/creargifo/pelicula.svg";
+        cinta1.src = "./src/img/creargifo/element_cinta1.svg";
+        cinta2.src = "./src/img/creargifo/element_cinta2.svg";
+        camBody.src = "./src/img/creargifo/element-camara.svg";
+        pelicula.src = "./src/img/creargifo/pelicula.svg";
     }
 }
 
@@ -130,7 +130,7 @@ botonSubir.addEventListener("click",()=>{
     let chargeGifoWindow = document.createElement("div");
     chargeGifoWindow.classList.add("charge-gifo-window");
     let chargeGifoIcon = document.createElement("img");
-    chargeGifoIcon.src = "./../img/creargifo/loader.svg";
+    chargeGifoIcon.src = "./src/img/creargifo/loader.svg";
     chargeGifoIcon.classList.add("charge-gifo-icon");
     chargeGifoIcon.classList.add("loaderAnimation");
     let chargeGifoText = document.createElement("p");
@@ -148,19 +148,19 @@ botonSubir.addEventListener("click",()=>{
     .then(responseJSON => {
         console.log("Success: ", responseJSON);
         chargeGifoIcon.classList.remove("loaderAnimation");
-        chargeGifoIcon.src = "./../img/creargifo/check.svg";
+        chargeGifoIcon.src = "./src/img/creargifo/check.svg";
         chargeGifoText.textContent = "GIFO subido con éxito";
         downloadMiGif = document.createElement("img");
-        downloadMiGif.src = "./../img/icons/home-main/hoverIcons/icon-download.svg";
+        downloadMiGif.src = "./src/img/icons/home-main/hoverIcons/icon-download.svg";
         chargeGifoWindow.appendChild(downloadMiGif);
         chargeGifoWindow.insertBefore(downloadMiGif, chargeGifoIcon);
         hover(downloadMiGif, 
-            "./../img/icons/home-main/hoverIcons/icon-download-hover.svg",
-            "./../img/icons/home-main/hoverIcons/icon-download.svg");
+            "./src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
+            "./src/img/icons/home-main/hoverIcons/icon-download.svg");
 
         Nighthover(downloadMiGif, 
-            "./../img/icons/home-main/hoverIcons/icon-download-hover.svg",
-            "./../img/icons/home-main/hoverIcons/icon-download.svg");
+            "./src/img/icons/home-main/hoverIcons/icon-download-hover.svg",
+            "./src/img/icons/home-main/hoverIcons/icon-download.svg");
         downloadMiGif.classList.add("download-mi-gif");
 
         let miGifoId = responseJSON.data.id;
