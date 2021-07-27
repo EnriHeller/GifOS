@@ -34,7 +34,7 @@ const buscarGifs = async (q, gifsContainer, offset) => {
         }
     } catch (error) {
         let noResultsImage= document.createElement("img");
-        noResultsImage.src = "./../img/home/icon-busqueda-sin-resultado.svg";
+        noResultsImage.src = "./src/img/home/icon-busqueda-sin-resultado.svg";
         let noResultsMessage = document.createElement("h3");
         noResultsMessage.textContent = "Intenta con otra búsqueda.";
         noResultsMessage.classList.add("noResultsMessage");
@@ -73,15 +73,15 @@ function buscarEscribiendoEnElInput(input, gifsContainer, input2){
 let changeSearchIcon = function(input, searchIcon){
     input.addEventListener("keyup", ()=>{
         if(input.value !== "" && !body.className.includes("night--style")){
-            searchIcon.src = "./../img/icons/header/close.svg";
+            searchIcon.src = "./src/img/icons/header/close.svg";
         }else if(input.value !== "" && body.className.includes("night--style")){
-            searchIcon.src = "./../img/icons/header/close-modo-noct.svg";
+            searchIcon.src = "./src/img/icons/header/close-modo-noct.svg";
         }
         
         else if(input.value === "" && !body.className.includes("night--style")){
-            searchIcon.src = "./../img/icons/home-main/icon-search.svg";
+            searchIcon.src = "./src/img/icons/home-main/icon-search.svg";
         }else if(input.value === "" && body.className.includes("night--style")){
-            searchIcon.src = "./../img/icons/home-main/icon-search-modo-noct.svg";
+            searchIcon.src = "./src/img/icons/home-main/icon-search-modo-noct.svg";
         }
     });
 
@@ -94,9 +94,9 @@ let changeSearchIcon = function(input, searchIcon){
         ul.classList.add("hidden");
         iconSearchInput.classList.add("hidden");
         if(!body.className.includes("night--style")){
-            searchIcon.src = "./../img/icons/home-main/icon-search.svg";
+            searchIcon.src = "./src/img/icons/home-main/icon-search.svg";
         }else{
-            searchIcon.src = "./../img/icons/home-main/icon-search-modo-noct.svg";
+            searchIcon.src = "./src/img/icons/home-main/icon-search-modo-noct.svg";
         }
     });
 } ;
@@ -137,7 +137,7 @@ const autocomplete = async(q,input,gifsContainer) =>{
         for(objetoSugerencia of arraySugerencias){
             let sugerencia = document.createElement("li");
             let iconSearchSugerencia = document.createElement("img");
-            iconSearchSugerencia.src = "./../img/icons/home-main/white-search-icon-png-18.png";
+            iconSearchSugerencia.src = "./src/img/icons/home-main/white-search-icon-png-18.png";
             sugerencia.classList.add("sugerencia");
             iconSearchSugerencia.classList.add("iconSearchSugerencia");
 
@@ -213,8 +213,8 @@ const trendingWords = async function(wordsContainer, input, gifsContainer){
 if(body.className.includes("night--style")){
     nightClass(busquedaMain);
     nightBorders(searchContainer);
-    searchIcon.setAttribute("src", "./../img/icons/home-main/icon-search-modo-noct.svg");
-    verMas.src = "./../img/icons/favoritos-main/ver+-modo-noc.svg";
+    searchIcon.setAttribute("src", "./src/img/icons/home-main/icon-search-modo-noct.svg");
+    verMas.src = "./src/img/icons/favoritos-main/ver+-modo-noc.svg";
 }
 
 //EVENTOS
@@ -223,18 +223,18 @@ nightModeButton.addEventListener("click",() =>{
     nightBorders(searchContainer);
     
     if(body.className.includes("night--style")){
-        searchIcon.setAttribute("src", "./../img/icons/home-main/icon-search-modo-noct.svg");
-        verMas.src = "./../img/icons/favoritos-main/ver+-modo-noc.svg";
+        searchIcon.setAttribute("src", "./src/img/icons/home-main/icon-search-modo-noct.svg");
+        verMas.src = "./src/img/icons/favoritos-main/ver+-modo-noc.svg";
 
     }else{
-        searchIcon.setAttribute("src", "./../img/icons/home-main/icon-search.svg");
-        verMas.src = "./../img/icons/favoritos-main/ver-mas.svg";
+        searchIcon.setAttribute("src", "./src/img/icons/home-main/icon-search.svg");
+        verMas.src = "./src/img/icons/favoritos-main/ver-mas.svg";
     }
 });
 
-hover(verMas,"./../img/icons/favoritos-main/ver-mas-hover.svg","./../img/icons/favoritos-main/ver-mas.svg");
+hover(verMas,"./src/img/icons/favoritos-main/ver-mas-hover.svg","./src/img/icons/favoritos-main/ver-mas.svg");
 
-Nighthover(verMas, "./../img/icons/favoritos-main/ver+hover-modo-noc.svg", "./../img/icons/favoritos-main/ver+-modo-noc.svg");
+Nighthover(verMas, "./src/img/icons/favoritos-main/ver+hover-modo-noc.svg", "./src/img/icons/favoritos-main/ver+-modo-noc.svg");
 
 buscarEscribiendoEnElInput(busquedaMain, grillaGif, busquedaHeader);
 
