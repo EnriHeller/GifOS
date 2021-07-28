@@ -115,6 +115,7 @@
 .rec-options-container{
     width: 100%;
     grid-area: 2/2/3/3;
+    margin-top: 30px;
     @include column--disposition;
 }
 .steps{
